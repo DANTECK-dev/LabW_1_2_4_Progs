@@ -632,7 +632,7 @@ void saveClients(person*& head, person*& tail, person*& clients)
 //finished
 
 void downloadClients(person*& head, person*& tail, person*& clients) {
-	string defaultFileName = (INDIVID_INPUT_FILE_LOCATION);
+	//string defaultFileName = (INDIVID_INPUT_FILE_LOCATION);
 	std::cout << "\n\n\t1. Загрузтиь из файла с названием " << INDIVID_INPUT_FILE_LOCATION
 		<< " с исходным кодом\n\t2. Изменить название файла\n\t0. Выход\n\n\t";
 	int inNum;
@@ -649,24 +649,14 @@ void downloadClients(person*& head, person*& tail, person*& clients) {
 
 		ifstream inClients(INDIVID_INPUT_FILE_LOCATION);
 
-		if (inClients.bad()) {
-			std::cout << "\n\tОшибка ввода-вывода при чтении...";
-			char p = _getch();
-			system("cls");
-			return;
-		}
-		else if (inClients.eof()) {
-			std::cout << "\n\tДостигнут конец файла...";
-			char p = _getch();
-			system("cls");
-			return;
-		}
-		else if (inClients.fail()) {
-			std::cout << "\n\tНеверный формат данных...";
-			char p = _getch();
-			system("cls");
-			return;
-		}
+		if (inClients.bad())
+			throw exception("\n\tОшибка ввода-вывода при чтении");
+
+		if (inClients.eof())
+			throw exception("\n\tДостигнут конец файла");
+
+		if (inClients.fail())
+			throw exception("\n\tНеверный формат данных");
 
 		int size = 0;
 		inClients >> size;
@@ -708,24 +698,19 @@ void downloadClients(person*& head, person*& tail, person*& clients) {
 		system("cls");
 		ifstream inClients(newName);
 
-		if (inClients.bad()) {
-			std::cout << "\n\tОшибка ввода-вывода при чтении...";
-			char p = _getch();
-			system("cls");
-			return;
-		}
-		else if (inClients.eof()) {
-			std::cout << "\n\tДостигнут конец файла...";
-			char p = _getch();
-			system("cls");
-			return;
-		}
-		else if (inClients.fail()) {
-			std::cout << "\n\tНеверный формат данных...";
-			char p = _getch();
-			system("cls");
-			return;
-		}
+		if (inClients.bad()) 
+			throw exception("\n\tОшибка ввода-вывода при чтении");
+
+
+		if (inClients.eof())
+			throw exception("\n\tДостигнут конец файла");
+
+
+		if (inClients.fail())
+			throw exception("\n\tНеверный формат данных");
+
+		//if (inClients == NULL)
+		//	throw exception("\n\tНеверный формат данных");
 
 		int size = 0;
 		inClients >> size;

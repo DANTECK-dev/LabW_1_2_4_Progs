@@ -1,6 +1,6 @@
 ﻿
 #define _CRT_SECURE_NO_WARNINGS
-#define VER 1
+#define VER 2
 
 #include <iostream>
 #include <Windows.h>
@@ -323,18 +323,95 @@ void individualTask()
 		clients = head;
 
 		switch ((individualTaskMenu)inputNum) {
+
 			case individualTaskMenu::Exit:		return;
-			case individualTaskMenu::Add:		{addClients			(head, tail, clients); break; }
-			case individualTaskMenu::Sort:		{sortClients		(head, tail, clients); break; }
-			case individualTaskMenu::Transform: {transformClients	(head, tail, clients); break; }
-			case individualTaskMenu::Del:		{delClients			(head, tail, clients); break; }
-			case individualTaskMenu::Show:		{showClients		(head, tail, clients); break; }
-			case individualTaskMenu::Search:	{searchClients		(head, tail, clients); break; }
+
+			case individualTaskMenu::Add:		
+			{
+				try
+				{
+					addClients(head, tail, clients);
+				}
+				catch (const exception& err)
+				{
+					cout << "\n\t" << err.what() << " ... ";
+					char p = _getch();
+					system("cls");
+				}
+				break;
+			}
+
+			case individualTaskMenu::Sort: {sortClients(head, tail, clients); break; }
+
+			case individualTaskMenu::Transform:
+			{
+				try
+				{
+					transformClients(head, tail, clients);
+				}
+				catch (const exception& err)
+				{
+					cout << "\n\t" << err.what() << " ... ";
+					char p = _getch();
+					system("cls");
+				}
+				break; 
+			}
+
+			case individualTaskMenu::Del:		
+			{
+				try
+				{
+					delClients(head, tail, clients);
+				}
+				catch (const exception& err)
+				{
+					cout << "\n\t" << err.what() << " ... ";
+					char p = _getch();
+					system("cls");
+				}
+				break;
+			}
+
+			case individualTaskMenu::Show: {showClients(head, tail, clients); break; }
+
+			case individualTaskMenu::Search: {searchClients(head, tail, clients); break; }
+
 #if VER == 2
-			case individualTaskMenu::Save:		{saveClients		(head, tail, clients); break; }
-			case individualTaskMenu::Load:		{downloadClients	(head, tail, clients); break; }
+
+			case individualTaskMenu::Save:		
+			{
+				try
+				{
+					saveClients(head, tail, clients);
+				}
+				catch (const exception& err)
+				{
+					cout << "\n\t" << err.what() << " ... ";
+					char p = _getch();
+					system("cls");
+				}
+				break; 
+			}
+
+			case individualTaskMenu::Load:		
+			{
+				try {
+					downloadClients(head, tail, clients);
+				}
+				catch (const exception& err)
+				{
+					cout << "\n\t" << err.what() << " ... ";
+					char p = _getch();
+					system("cls");
+				}
+				break;
+			}
+
 #elif VER == 1
-			case individualTaskMenu::URL:		{system("start pay.html"); break; }
+
+			case individualTaskMenu::URL: {system("start pay.html"); break; }
+
 #endif
 			default: {
 			std::cout << "\n\tВведено неверное значение, нажмите любую клавишу для продолжения... ";
@@ -357,15 +434,16 @@ void individualTask()
 
 #pragma region additionalTask
 
-
-/*
-	Добавьте вызов и обработку исключений в индивидуальное задание в следующих ситуациях:
-	1) Файл не открывается для чтения/записи данных.
-	2) Для изменения/удаления выбран элемент, которого нет.
-	3) Если были внесены данные неверного формата при добавлении нового элемента.
-	Вызов исключений должен происходить в соответствующей функции, а обработка уже в main().
-*/
-
+void additionalTask() {
+	/*
+		Добавьте вызов и обработку исключений в индивидуальное задание в следующих ситуациях:
+		1) Файл не открывается для чтения/записи данных.
+		2) Для изменения/удаления выбран элемент, которого нет.
+		3) Если были внесены данные неверного формата при добавлении нового элемента.
+		Вызов исключений должен происходить в соответствующей функции, а обработка уже в main().
+	*/
+	return;
+}
 
 #pragma endregion
 
