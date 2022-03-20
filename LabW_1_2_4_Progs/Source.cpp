@@ -234,8 +234,8 @@ enum class individualTaskMenu
 	Show,
 	Search,
 	Save,
-	Load
-
+	Load,
+	URL
 };
 
 void individualTask()
@@ -284,7 +284,7 @@ void individualTask()
 	VER (#define VER). В зависимости от того чему он равен будет компилироваться
 	определенная версия программы:
 	1. Данные в структуру считываются только с клавиатуры. Нужно сделать так, чтобы при
-	VER=1блокировались возможности считывания и сохранения данных в файл.
+	VER=1 блокировались возможности считывания и сохранения данных в файл.
 	2. Полная версия (VER=2), позволяющая считывать данные с файла и с клавиатуры.*/
 	// 4 laba
 
@@ -307,8 +307,13 @@ void individualTask()
 		std::cout << "\n\t    ----== 4. Удалить  данные клиента ==----    ";
 		std::cout << "\n\t    ----== 5. Вывести список клиентов ==----    ";
 		std::cout << "\n\t     ----== 6. Поиск клиента по базе ==----     ";
+#if VER == 2
 		std::cout << "\n\t  ----== 7. Сохранить все  данные в файл==----  ";
 		std::cout << "\n\t   ----== 8. Загрузить данные из файла ==----   ";
+#elif VER == 1
+		std::cout << "\n\t----== 9.Купите премиум  версию программы ==----";
+		std::cout << "\n\t----== Чтобы загружать и  выгружать файлы ==----";
+#endif
 		std::cout << "\n\t             ----== 0. Выход ==----             \n\t";
 
 		int inputNum;
@@ -325,8 +330,12 @@ void individualTask()
 			case individualTaskMenu::Del:		{delClients			(head, tail, clients); break; }
 			case individualTaskMenu::Show:		{showClients		(head, tail, clients); break; }
 			case individualTaskMenu::Search:	{searchClients		(head, tail, clients); break; }
+#if VER == 2
 			case individualTaskMenu::Save:		{saveClients		(head, tail, clients); break; }
 			case individualTaskMenu::Load:		{downloadClients	(head, tail, clients); break; }
+#elif VER == 1
+			case individualTaskMenu::URL:		{system("start pay.html"); break; }
+#endif
 			default: {
 			std::cout << "\n\tВведено неверное значение, нажмите любую клавишу для продолжения... ";
 			char p = _getch();
