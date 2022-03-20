@@ -26,5 +26,8 @@
     <ClInclude Include="FunctionsForAnIndividualTask.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="PersonStruct.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

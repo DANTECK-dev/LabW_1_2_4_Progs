@@ -1,30 +1,20 @@
-//A#pragma once
-
-#define FUNCTIONSFORANINDIVIDUALTASK_H_
 #include "FunctionsForAnIndividualTask.h"
-#include <iostream>
+#include "PersonStruct.h"
 #include <Windows.h>
-#include <stdio.h>
-#include <conio.h>
 #include <string>
-#include <cstdlib>
-#include <cmath>
-#include <time.h>
-#include <random>
-#include <stdlib.h>
-#include <malloc.h>
-#include <algorithm>
-#include <cstddef>
-#include <utility>
+#include <iostream>
+#include <conio.h>
 #include <fstream>
-#include <io.h> 
 
 using namespace std;
 
-void addClients(person*& head, person*& tail, person*& clients) 
+#define INDIVID_INPUT_FILE_LOCATION		"Input_Clients.txt"
+#define INDIVID_OUTPUT_FILE_LOCATION	"Output_Clients.txt"
+
+void addClients(person*& head, person*& tail, person*& clients)
 {
 	std::cout << "\n\n\tДобавление клиента\n";
-	str	ing	newSurname = { "None" };
+	string	newSurname = { "None" };
 	string	newName = { "None" };
 	string	newPatronymic = { "None" };
 	string	newAddress = { "None" };
@@ -560,10 +550,10 @@ void searchClients(person*& head, person*& tail, person*& clients) {
 	clients = head;
 	bool searchID = false;
 	while (true) {
-		if (clients->next == NULL) break;
 		if (inputStr == clients->Data.Surname) { searchID = true; show(clients); }
 		if (inputStr == clients->Data.Name) { searchID = true; show(clients); }
 		if (inputStr == clients->Data.Patronymic) { searchID = true; show(clients); }
+		if (clients->next == NULL) break;
 		clients = clients->next;
 	}
 	clients = head;
